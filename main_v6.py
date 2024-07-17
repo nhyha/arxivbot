@@ -42,7 +42,8 @@ os.makedirs(today_summaries_dir, exist_ok=True)
 
 # Load environment variables
 load_dotenv()
-# DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 # 사용자 에이전트 목록
 USER_AGENTS = [
@@ -516,7 +517,7 @@ async def send_discord_messages(session, workspace, threads, old_paper_set, work
         await client.close()
 
     try:
-        await client.start(workspace["discord_token"])
+        await client.start(DISCORD_TOKEN)
     except Exception as e:
         print(f"An error occurred while connecting to Discord: {e}")
 
