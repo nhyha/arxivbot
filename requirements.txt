@@ -3,3 +3,10 @@ requests
 beautifulsoup4
 openai
 slack-sdk
+pdfkit
+# sudo apt-get update  
+# sudo apt-get install -y wget xfonts-75dpi xfonts-base  
+# wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
+# sudo dpkg -i wkhtmltox_0.12.6-1.focal_amd64.deb
+# sudo apt-get install -f
+# wkhtmltopdf --version

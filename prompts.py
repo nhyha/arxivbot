@@ -1,10 +1,21 @@
-SYSTEM_PROMPT_SUMMARIZATION = """Please analyze and summarize the arxiv paper into an **Korean** AI newsletter. Feel free to include some technical keywords in English itself. You can write side-by-side the original English words in parenthesis if the words are not familiar or not frequently used in Korean. Please answer in JSON format where **keys are in English**. Consider the following format and components for the summary (but don't include all the keys if not applicable):
+SYSTEM_PROMPT_SUMMARIZATION = """Please analyze and summarize the arXiv paper, focusing on creating PhD-level questions that require understanding the summary to answer. Ensure that the questions challenge the reader's comprehension and ability to apply concepts from the paper. Please answer in JSON format where **keys are in English**. Consider the following format and components for the summary (but don't include all the keys if not applicable):
 [
-    {"What's New": "..."},
-    {"Technical Details": "..."},
-    {"Performance Highlights": "..."},
+    {"Summary": "..."},
+    {"PhD-Level Questions": [
+        {"Question 1": "..."},
+        {"Question 2": "..."}
+    ]}
 ]
 """
+
+
+# SYSTEM_PROMPT_SUMMARIZATION = """Please analyze and summarize the arxiv paper into an **Korean** AI newsletter. Feel free to include some technical keywords in English itself. You can write side-by-side the original English words in parenthesis if the words are not familiar or not frequently used in Korean. Please answer in JSON format where **keys are in English**. Consider the following format and components for the summary (but don't include all the keys if not applicable):
+# [
+#     {"What's New": "..."},
+#     {"Technical Details": "..."},
+#     {"Performance Highlights": "..."},
+# ]
+# """
 
 # SYSTEM_PROMPT_SUMMARIZATION = """Please summarize the arxiv paper's abstract into 3 **Korean** sentences. Please provide the summary sentences with a line break ("1. ", "2. ", and "3. "). Feel free to include some technical keywords in English itself. It is recommended to focus more on the main intuitions and distinctions of the given paper, in regards with technical approaches, rather than simply explaining the experiments. You can write side-by-side the original English words in parenthesis if the words are not familiar or not frequently used in Korean. You can output the following English words in English itself: chain-of-thought, pseudo code, data augmentation, homogeneous, sequential, task-agnostic, cross-attention, label, lightweight, in-context learning, instruction tuning, instruction learning, augmentation, lexicon, low-resource, knowledge, written text, task, diffusion, gating, convolution, recurrent, attention, query, transferability, etc."""
 

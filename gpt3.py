@@ -55,7 +55,23 @@ def get_openai_summarization(content):
     system_prompt = SYSTEM_PROMPT_SUMMARIZATION
     # user_prompt = USER_PROMPT_SUMMARIZATION + f'''\nabstract: "{content}"'''
     user_prompt = f"""{content}"""
-    return call_chatgpt(system_prompt, user_prompt)
+    try:
+        response = call_chatgpt(system_prompt, user_prompt)
+        #response_content = response.choices[0].message.content.strip()
+        # print("GPT-3 응답 내용:", response_content)  # 응답 내용 출력
+        # json_content = json.loads(response_content)
+        print("GPT-3 응답 내용:", response)  # 응답 내용 출력
+        json_content = json.loads(response)
+        assert type(json_content) in [list, dict]
+        return json.dumps(json_content) #json_content
+    except json.decoder.JSONDecodeError as e:
+        print("JSONDecodeError 발생:", e)
+        print("응답 내용:", response_content)  # 문제 있는 응답 내용 출력
+        return None
+    except AssertionError:
+        print("응답이 JSON 형식이 아님:", response_content)
+        return None
+#    return call_chatgpt(system_prompt, user_prompt)
 
 
 if __name__ == "__main__":
