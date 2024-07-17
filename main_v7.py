@@ -94,27 +94,21 @@ def get_paper_set_of(field):
             time.sleep(trial * 30 + 15)
     list_soup = BeautifulSoup(list_page.text, "html.parser")
 
-    # <dd> 태그 추출
-    dt_tags = list_soup.find_all("dt")
-    dd_tags = list_soup.find_all("dd")
-
+    tr_tags = list_soup.find_all("tr")
     papers_url = []
     papers_title = []
     papers_comment = []
-    for dt_tag, dd_tag in zip(dt_tags, dd_tags):
-        # <dd> 태그 내에서 <span class="list-identifier"> 태그 추출
-        # identifier_tag = dt_tag.find("span", class_="list-identifier")
-        paper_url = dt_tag.find("a", {"title": "Abstract"})["href"]
+    for tr_tag in tr_tags:
+        paper_url = tr_tag.find("a", {"title": "Abstract"})["href"]
         paper_url = "https://arxiv.org" + paper_url
         papers_url.append(paper_url)
 
-        # <dd> 태그 내에서 <div class="list-title"> 태그 추출
-        title_tag = dd_tag.find("div", class_="list-title")
+        title_tag = tr_tag.find("div", class_="list-title")
         paper_title = title_tag.text.strip().strip("Title:").strip()
         papers_title.append(paper_title)
 
         # <dd> 태그 내에서 <div class="list-comments"> 태그 추출
-        comment_tag = dd_tag.find("div", class_="list-comments")
+        comment_tag = tr_tag.find("div", class_="list-comments")
         if comment_tag:
             papers_comment.append(comment_tag.text.strip())
         else:
@@ -123,6 +117,11 @@ def get_paper_set_of(field):
     papers = list(zip(papers_url, papers_title, papers_comment))
 
     return papers
+
+
+
+
+
 
 
 def get_paper_info(paper_url, paper_title):
